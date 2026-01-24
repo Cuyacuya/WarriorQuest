@@ -1,14 +1,16 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using WarriorQuest.InputSystem;
 
 
-namespace WarriorQuest.Characte
+namespace WarriorQuest.Characte.Player
 {
     [RequireComponent(typeof(Rigidbody2D))] //~~타입이 꼭 필요하다!
     [RequireComponent(typeof(Animator))] //~~타입이 꼭 필요하다!
     [RequireComponent(typeof(SpriteRenderer))] //~~타입이 꼭 필요하다!
     [RequireComponent(typeof(InputHandler))] //~~타입이 꼭 필요하다!
-    public class Player : MonoBehaviour
+    public abstract class Player : MonoBehaviour
     {
         #region 기본 스텟
         [Header("기본 스텟")]
@@ -25,16 +27,24 @@ namespace WarriorQuest.Characte
         public float MaxHp => maxHp;
         public float CurHp => curHp;
         public float MoveSpeed => moveSpeed; 
-        public float AttackDage => attackDamage;
+        public float AttackDamge => attackDamage;
         public float AttackCooldown => attackCooldown;
         #endregion
 
         #region 컴포넌트 캐싱
         protected Rigidbody2D rb;
-        protected Animator animator;
+        protected Animator anim;
         protected SpriteRenderer spriteRenderer;
         protected InputHandler inputHandler;
         #endregion
+
+        //Facing 처리를 위한 Weapon Transform
+        protected Transform weaponArm;
+
+        //애니메이션 파라메터 해시값을 미리 계산
+        protected static readonly int hasIsMoving = Animator.StringToHash("IsMoving");
+        protected static readonly int hasAttack = Animator.StringToHash("Attack");
+        protected static readonly int hasHit = Animator.StringToHash("Hit");
 
         #region 유니티 생명주기
         protected virtual void Awake()
@@ -43,10 +53,81 @@ namespace WarriorQuest.Characte
             curHp = maxHp;
             //컴포넌트 캣이
             rb = GetComponent<Rigidbody2D>();
-            animator = GetComponent<Animator>();
+            anim = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             inputHandler = GetComponent<InputHandler>();
+
+            //weaponArm 설정
+            weaponArm = transform.Find("Arm");
         }
+
+        protected void OnEnable()
+        {
+            inputHandler.OnMoveAction += OnMove;
+            inputHandler.OnAttackAction += OnAttack;
+            inputHandler.OnInteractAction += OnInteraction;
+        }
+        protected void OnDisable()
+        {
+            inputHandler.OnMoveAction -= OnMove;
+            inputHandler.OnAttackAction -= OnAttack;
+            inputHandler.OnInteractAction -= OnInteraction;
+        }
+        #endregion
+
+        #region 공통 메서드
+        //방향 설정
+        private void FlipDirection(bool facingRight)
+        {
+            if(facingRight)
+            {
+                //오른쪽을 볼 때
+                spriteRenderer.flipX = false;
+                weaponArm.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+            else
+            {
+                //왼쪽을 바라볼 떄
+                spriteRenderer.flipX = true;
+                weaponArm.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+        }
+        #endregion
+
+        #region 입력 처리 메서드
+        private void OnMove(Vector2 ctx)
+        {
+            if (isDead) return;
+
+            rb.linearVelocity = ctx.normalized * MoveSpeed;
+
+            //방향 전환
+            if (ctx.x != 0)
+            {
+                FlipDirection(ctx.x > 0);
+            }
+
+            //애니메이션
+            anim.SetBool(hasIsMoving, ctx.sqrMagnitude > 0.01f);
+        }
+        private void OnAttack()
+        {
+            if(isDead) return;
+            anim.SetTrigger(hasAttack);
+            Attack();
+        }
+
+        private void OnInteraction(bool ctx)
+        {
+            if (isDead) return;
+            Debug.Log($"상호작용 : {ctx}");
+        }
+
+
+        #endregion
+
+        #region 추상 메서드
+        protected abstract void Attack();
         #endregion
     }
 

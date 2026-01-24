@@ -14,9 +14,9 @@ namespace WarriorQuest.InputSystem
         private InputAction attackAction;
         private InputAction interactAction;
 
-        public static event Action<Vector2> OnMoveAction;
-        public static event Action OnAttackAction;
-        public static event Action<bool> OnInteractAction;
+        public event Action<Vector2> OnMoveAction;
+        public event Action OnAttackAction;
+        public event Action<bool> OnInteractAction;
 
         #region 유니티 생명주기
         private void Awake() //메모리할당하고 각 변수에 액션값을 정의한 것.
