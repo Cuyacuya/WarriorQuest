@@ -667,7 +667,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -6074762140567998671, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -2315569526197371611, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 4.4347305
+      m_AnimationSpeed: 4.205707
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 11, y: -7, z: 0}
@@ -677,7 +677,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -6074762140567998671, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -2315569526197371611, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 2.8308983
+      m_AnimationSpeed: 4.3839493
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -7, y: 3, z: 0}
@@ -687,7 +687,7 @@ Tilemap:
       - {fileID: 1209215474, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -522669331, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -357073678, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 2.636677
+      m_AnimationSpeed: 4.2346506
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -4, y: 3, z: 0}
@@ -697,7 +697,7 @@ Tilemap:
       - {fileID: 1209215474, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -522669331, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -357073678, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 2.0780637
+      m_AnimationSpeed: 3.819078
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -1, y: 3, z: 0}
@@ -707,7 +707,7 @@ Tilemap:
       - {fileID: 1209215474, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -522669331, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -357073678, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 4.465777
+      m_AnimationSpeed: 2.6957288
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 9, y: 5, z: 0}
@@ -717,7 +717,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -6074762140567998671, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -2315569526197371611, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 2.3752766
+      m_AnimationSpeed: 2.9815712
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 11, y: 5, z: 0}
@@ -727,7 +727,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -6074762140567998671, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -2315569526197371611, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 4.7268744
+      m_AnimationSpeed: 4.9778204
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 6, y: 7, z: 0}
@@ -737,7 +737,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -6074762140567998671, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -2315569526197371611, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 2.5248528
+      m_AnimationSpeed: 3.3656378
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -2515,6 +2515,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a354a5fa8024be74896aaddc9039800e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WarriorQuest.Character.Enemy.Enemy
+--- !u!114 &1301855748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301855741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e2d7f2b5cd95a4991af91db4d0890c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slime
 --- !u!1 &1555205765
 GameObject:
   m_ObjectHideFlags: 0
@@ -12808,6 +12820,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1420663691344858660, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1301855747}
+    - targetCorrespondingSourceObject: {fileID: 1420663691344858660, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1301855748}
   m_SourcePrefab: {fileID: 100100000, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
 --- !u!1001 &8257836411676352063
 PrefabInstance:
