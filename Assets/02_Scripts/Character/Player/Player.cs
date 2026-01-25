@@ -1,20 +1,17 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using WarriorQuest.Character.Interface;
 using WarriorQuest.InputSystem;
 
-
-namespace WarriorQuest.Characte.Player
+namespace WarriorQuest.Character.Player
 {
-    [RequireComponent(typeof(Rigidbody2D))] //~~Å¸ÀÔÀÌ ²À ÇÊ¿äÇÏ´Ù!
-    [RequireComponent(typeof(Animator))] //~~Å¸ÀÔÀÌ ²À ÇÊ¿äÇÏ´Ù!
-    [RequireComponent(typeof(SpriteRenderer))] //~~Å¸ÀÔÀÌ ²À ÇÊ¿äÇÏ´Ù!
-    [RequireComponent(typeof(InputHandler))] //~~Å¸ÀÔÀÌ ²À ÇÊ¿äÇÏ´Ù!
+    [RequireComponent(typeof(Rigidbody2D))] //~~Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½!
+    [RequireComponent(typeof(Animator))] //~~Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½!
+    [RequireComponent(typeof(SpriteRenderer))] //~~Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½!
+    [RequireComponent(typeof(InputHandler))] //~~Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½!
     public abstract class Player : MonoBehaviour, IDamageable
     {
-        #region ±âº» ½ºÅÝ
-        [Header("±âº» ½ºÅÝ")]
+        #region ï¿½âº» ï¿½ï¿½ï¿½ï¿½
+        [Header("ï¿½âº» ï¿½ï¿½ï¿½ï¿½")]
         [SerializeField] protected float maxHp = 100f;
         [SerializeField] protected float curHp = 100f;
         [SerializeField] protected float moveSpeed = 5f;
@@ -24,44 +21,44 @@ namespace WarriorQuest.Characte.Player
         protected bool isDead => curHp <= 0;
         #endregion
 
-        #region ÇÁ·ÎÆÛÆ¼
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼
         public float MaxHp => maxHp;
         public float CurHp => curHp;
         public float MoveSpeed => moveSpeed; 
-        public float AttackDamge => attackDamage;
+        public float AttackDamage => attackDamage;
         public float AttackCooldown => attackCooldown;
         #endregion
 
-        #region ÄÄÆ÷³ÍÆ® Ä³½Ì
+        #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ä³ï¿½ï¿½
         protected Rigidbody2D rb;
         protected Animator anim;
         protected SpriteRenderer spriteRenderer;
         protected InputHandler inputHandler;
         #endregion
 
-        //Facing Ã³¸®¸¦ À§ÇÑ Weapon Transform
+        //Facing Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Weapon Transform
         protected Transform weaponArm;
 
-        //¾Ö´Ï¸ÞÀÌ¼Ç ÆÄ¶ó¸ÞÅÍ ÇØ½Ã°ªÀ» ¹Ì¸® °è»ê
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½Ã°ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½
         protected static readonly int hashIsMoving = Animator.StringToHash("IsMoving");
         protected static readonly int hashAttack = Animator.StringToHash("Attack");
         protected static readonly int hashHit = Animator.StringToHash("Hit");
 
-        //¸¶Áö¸· °ø°Ý ½Ã°£
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
         private float lastAttackTime = 0f;
 
-        #region À¯´ÏÆ¼ »ý¸íÁÖ±â
+        #region ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
         protected virtual void Awake()
         {
-            //ÃÊ±â Ã¼·Â ¼³Á¤
+            //ï¿½Ê±ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             curHp = maxHp;
-            //ÄÄÆ÷³ÍÆ® Ä¹ÀÌ
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ä¹ï¿½ï¿½
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             inputHandler = GetComponent<InputHandler>();
 
-            //weaponArm ¼³Á¤
+            //weaponArm ï¿½ï¿½ï¿½ï¿½
             weaponArm = transform.Find("Arm");
         }
 
@@ -79,19 +76,19 @@ namespace WarriorQuest.Characte.Player
         }
         #endregion
 
-        #region °øÅë ¸Þ¼­µå
-        //¹æÇâ ¼³Á¤
+        #region ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         private void FlipDirection(bool facingRight)
         {
             if(facingRight)
             {
-                //¿À¸¥ÂÊÀ» º¼ ¶§
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
                 spriteRenderer.flipX = false;
                 weaponArm.localRotation = Quaternion.Euler(0, 0, 0);
             }
             else
             {
-                //¿ÞÂÊÀ» ¹Ù¶óº¼ ‹š
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½ ï¿½ï¿½
                 spriteRenderer.flipX = true;
                 weaponArm.localRotation = Quaternion.Euler(0, 180, 0);
             }
@@ -112,31 +109,31 @@ namespace WarriorQuest.Characte.Player
         protected virtual void Die()
         {
             curHp = 0;
-            Debug.Log("ÇÃ·¹ÀÌ¾î°¡ »ç¸ÁÇß½À´Ï´Ù.");
+            Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
         }
         #endregion
 
-        #region ÀÔ·Â Ã³¸® ¸Þ¼­µå
+        #region ï¿½Ô·ï¿½ Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
         private void OnMove(Vector2 ctx)
         {
             if (isDead) return;
 
             rb.linearVelocity = ctx.normalized * MoveSpeed;
 
-            //¹æÇâ ÀüÈ¯
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
             if (ctx.x != 0)
             {
                 FlipDirection(ctx.x > 0);
             }
 
-            //¾Ö´Ï¸ÞÀÌ¼Ç
+            //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
             anim.SetBool(hashIsMoving, ctx.sqrMagnitude > 0.01f);
         }
         private void OnAttack()
         {
             if(isDead) return;
 
-            //°ø°Ý ÄðÅ¸ÀÓ Ã¼Å©
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ Ã¼Å©
             if(Time.time >= lastAttackTime + attackCooldown)
             {
                 lastAttackTime = Time.time;
@@ -148,13 +145,13 @@ namespace WarriorQuest.Characte.Player
         private void OnInteraction(bool ctx)
         {
             if (isDead) return;
-            Debug.Log($"»óÈ£ÀÛ¿ë : {ctx}");
+            Debug.Log($"ï¿½ï¿½È£ï¿½Û¿ï¿½ : {ctx}");
         }
 
 
         #endregion
 
-        #region Ãß»ó ¸Þ¼­µå
+        #region ï¿½ß»ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
         protected abstract void Attack();
 
         #endregion

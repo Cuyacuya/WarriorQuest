@@ -78,9 +78,9 @@ namespace WarriorQuest.InputSystem
                 //Debug.Log("상호작용 시작");
                 OnInteractAction?.Invoke(true);
             }
-            else if (context.phase == InputActionPhase.Performed)
+            else if (context.phase == InputActionPhase.Canceled)
             {
-                //Debug.Log("상호작용 시작");
+                //Debug.Log("상호작용 끝");
                 OnInteractAction?.Invoke(false);
             }
         }

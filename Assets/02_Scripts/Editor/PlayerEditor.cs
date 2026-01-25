@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using WarriorQuest.Characte.Player;
+using WarriorQuest.Character.Player;
 
 [CustomEditor(typeof(Player), true)]
 public class PlayerEditor : Editor
@@ -16,11 +16,11 @@ public class PlayerEditor : Editor
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("테스트 기능", EditorStyles.boldLabel);
 
-        var damage = EditorGUILayout.FloatField("공격 데미지", player.AttackDamge);
+        var damage = EditorGUILayout.FloatField("공격 데미지", player.AttackDamage);
 
         if (GUILayout.Button($"피해 입히기 ({damage})"))
         {
-            player.TakeDamage(10f);
+            player.TakeDamage(damage);
         }
     }
 }

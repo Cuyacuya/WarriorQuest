@@ -1,15 +1,13 @@
-using System;
 using UnityEngine;
-using WarriorQuest.Characte.Player;
 
-namespace WarriorQuest.Characte.Player
+namespace WarriorQuest.Character.Player
 {
     public class Warrior : Player
     {
-        [Header("Àü»ç Àü¿ë ½ºÅÝ")]
+        [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
         [SerializeField] private WarriorSO warriorSO;
 
-        #region À¯´ÏÆ¼ »ý¸íÁÖ±â
+        #region ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
         protected override void Awake()
         {
             maxHp = warriorSO.maxHp;
@@ -17,31 +15,31 @@ namespace WarriorQuest.Characte.Player
             attackDamage = warriorSO.attackDamage;
             attackCooldown = warriorSO.attackCooldown;
 
-            Debug.Log($"Àü»ç Å¬·¡½º°¡ »ý¼ºµÇ¾ú½À´Ï´Ù. ¹æ¾î·Â : {warriorSO.defense}");
+            Debug.Log($"ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ : {warriorSO.defense}");
             base.Awake();
         }
         #endregion
         protected override void Attack()
         {
-            Debug.Log("°ø°Ý!!!");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½!!!");
 
         }
 
-        //¾Ö´Ï¸ÞÀÌ¼ÇÀÇ ÀÌº¥Æ®¿¡¼­ È£ÃâÇÒ ¸Þ¼­µå
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
         public void OnAttackAnimationEvent()
         {
-            //½ÇÁ¦ °ø°Ý Ã³¸® ·ÎÁ÷
-            Debug.Log("°ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç ÀÌº¥Æ® ¹ß»ý - ½ÇÁ¦ °ø°Ý Ã³¸®");
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Ìºï¿½Æ® ï¿½ß»ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½");
         }
 
         public override void TakeDamage(float damage)
         {
-            //¹æ¾î·Â Àû¿ë
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             float actualDamage = Mathf.Max(damage- warriorSO.defense, 5f);
 
-            base.TakeDamage(damage);
+            base.TakeDamage(actualDamage);
 
-            Debug.Log($"Warrior°¡ {actualDamage}¸¦ ¹Þ¾Ò½À´Ï´Ù. ÇöÀç Ã¼·Â : {curHp}/{maxHp}");
+            Debug.Log($"Warriorï¿½ï¿½ {actualDamage}ï¿½ï¿½ ï¿½Þ¾Ò½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ : {curHp}/{maxHp}");
         }
     }
 
