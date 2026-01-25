@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using WarriorQuest.Character.Interface;
 using WarriorQuest.InputSystem;
 
 
@@ -10,7 +11,7 @@ namespace WarriorQuest.Characte.Player
     [RequireComponent(typeof(Animator))] //~~타입이 꼭 필요하다!
     [RequireComponent(typeof(SpriteRenderer))] //~~타입이 꼭 필요하다!
     [RequireComponent(typeof(InputHandler))] //~~타입이 꼭 필요하다!
-    public abstract class Player : MonoBehaviour
+    public abstract class Player : MonoBehaviour, IDamageable
     {
         #region 기본 스텟
         [Header("기본 스텟")]
@@ -42,9 +43,9 @@ namespace WarriorQuest.Characte.Player
         protected Transform weaponArm;
 
         //애니메이션 파라메터 해시값을 미리 계산
-        protected static readonly int hasIsMoving = Animator.StringToHash("IsMoving");
-        protected static readonly int hasAttack = Animator.StringToHash("Attack");
-        protected static readonly int hasHit = Animator.StringToHash("Hit");
+        protected static readonly int hashIsMoving = Animator.StringToHash("IsMoving");
+        protected static readonly int hashAttack = Animator.StringToHash("Attack");
+        protected static readonly int hashHit = Animator.StringToHash("Hit");
 
         #region 유니티 생명주기
         protected virtual void Awake()
@@ -92,6 +93,24 @@ namespace WarriorQuest.Characte.Player
                 weaponArm.localRotation = Quaternion.Euler(0, 180, 0);
             }
         }
+
+        public virtual void TakeDamage(float damage)
+        {
+            if (isDead) return;
+            curHp -= damage;
+            anim.SetTrigger(hashHit);
+
+            if (curHp <= 0)
+            {
+                Die();
+            }
+        }
+
+        protected virtual void Die()
+        {
+            curHp = 0;
+            Debug.Log("플레이어가 사망했습니다.");
+        }
         #endregion
 
         #region 입력 처리 메서드
@@ -108,12 +127,12 @@ namespace WarriorQuest.Characte.Player
             }
 
             //애니메이션
-            anim.SetBool(hasIsMoving, ctx.sqrMagnitude > 0.01f);
+            anim.SetBool(hashIsMoving, ctx.sqrMagnitude > 0.01f);
         }
         private void OnAttack()
         {
             if(isDead) return;
-            anim.SetTrigger(hasAttack);
+            anim.SetTrigger(hashAttack);
             Attack();
         }
 
@@ -128,6 +147,7 @@ namespace WarriorQuest.Characte.Player
 
         #region 추상 메서드
         protected abstract void Attack();
+
         #endregion
     }
 
