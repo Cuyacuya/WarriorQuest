@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using WarriorQuest.Character.Enemy.FSM;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace WarriorQuest.Character.Enemy
 {
     public abstract class Enemy : MonoBehaviour
     {
-        //상태 머신 구현 예정
+        //상태 머신 변수
         protected StateMachine stateMachine;
+
+        //상태 머신 프로퍼티
+        public StateMachine StateMachine => stateMachine;
+
+        //현재 상태를 표기
+        public string CurStateName => StateMachine?.curState.GetType().Name ?? "None";
 
         //상태 전환 메서드
         public void ChangeState<T>() where T : IState

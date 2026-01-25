@@ -13,7 +13,7 @@ namespace WarriorQuest.Character.Enemy.FSM
         }
 
         //현재 상태를 저장하는 변수
-        protected IState curState;
+        public IState curState;
 
         //상태 전환 메서드
         public void ChangeState(IState newState)
