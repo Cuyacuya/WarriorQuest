@@ -7,17 +7,17 @@ namespace WarriorQuest.Character.Enemy.FSM
     {
         public void OnEnter(Enemy enemy)
         {
-            Debug.Log("AttackState ÁøÀÔ");
+            Debug.Log("AttackState ì§„ìž…");
         }
 
         public void OnUpdate(Enemy enemy)
         {
-            Debug.Log("AttackState °»½Å");
+            Debug.Log("AttackState ìœ ì§€");
         }
 
         public void OnExit(Enemy enemy)
         {
-            Debug.Log("AttackState Á¾·á");
+            Debug.Log("AttackState íƒˆì¶œ");
         }
     }
 }

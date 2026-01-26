@@ -1,14 +1,5 @@
 {
   "dependencies": {
-    "com.coplaydev.unity-mcp": {
-      "version": "https://github.com/CoplayDev/unity-mcp.git?path=/MCPForUnity",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "3.0.2"
-      },
-      "hash": "e00b2aed4ff107bd7df47f03072bb0d1c23a68fc"
-    },
     "com.unity.2d.animation": {
       "version": "13.0.4",
       "depth": 0,

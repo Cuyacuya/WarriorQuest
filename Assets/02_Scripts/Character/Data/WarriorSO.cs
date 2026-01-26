@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WarriorSO : UnityEngine.ScriptableObject
 {
-    [Header("Àü»ç Àü¿ë ½ºÅÝ")]
+    [Header("ì „ì‚¬ ê³ ìœ  ìŠ¤íƒ¯")]
     public float maxHp = 150f;
     public float moveSpeed = 4f;
     public float attackDamage = 25f;

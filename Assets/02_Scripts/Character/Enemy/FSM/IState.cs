@@ -4,11 +4,11 @@ namespace WarriorQuest.Character.Enemy.FSM
 {
     public interface IState
     {
-        //»óÅÂ ÁøÀÔ ½Ã È£ÃâÇÒ ÇÔ¼ö
+        //ìƒíƒœ ì§„ì… ì‹œ í˜¸ì¶œë  í•¨ìˆ˜
         void OnEnter(Enemy enemy);
-        //»óÅÂ ÁøÀÔ Áß È£ÃâÇÒ ÇÔ¼ö
+        //ìƒíƒœ ìœ ì§€ ì‹œ í˜¸ì¶œë  í•¨ìˆ˜
         void OnUpdate(Enemy enemy);
-        //»óÅÂ Å»Ãâ ½Ã È£ÃâÇÒ ÇÔ¼ö
+        //ìƒíƒœ íƒˆì¶œ ì‹œ í˜¸ì¶œë  í•¨ìˆ˜
         void OnExit(Enemy enemy);
     }
 }
