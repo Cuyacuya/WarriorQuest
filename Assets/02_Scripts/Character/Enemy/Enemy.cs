@@ -9,13 +9,13 @@ namespace WarriorQuest.Character.Enemy
 {
     public abstract class Enemy : MonoBehaviour
     {
-        [Header("기본 스텟 Data")]
-        [SerializeField] protected float maxHp;
+        // [Header("기본 스텟 Data")]
+        // [SerializeField] protected float maxHp;
         [SerializeField] protected float curHp;
-        [SerializeField] protected float moveSpeed;
-        [SerializeField] protected float chaseDistance;
-        [SerializeField] protected float attackDistance;
-        [SerializeField] protected float attackCooldown;
+        // [SerializeField] protected float moveSpeed;
+        // [SerializeField] protected float chaseDistance;
+        // [SerializeField] protected float attackDistance;
+        // [SerializeField] protected float attackCooldown;
         
         //Player 레이어 마스크
         [Header("Player 레이어 마스크")]
@@ -50,16 +50,16 @@ namespace WarriorQuest.Character.Enemy
         protected Dictionary<Type, IState> states;
 
         //기본 스텟 SO
-        [SerializeField] protected EnemySO enemySo;
+        public EnemySO enemySo;
         
         //상태 초기화 추상 메서드
-        protected abstract void InisStates();
+        protected abstract void InitStates();
 
         #region 유니티 라이프사이클
         protected virtual void Awake()
         {
             //상태 초기화 호출
-            InisStates();
+            InitStates();
 
             //컴포넌트 캐싱
             InitComponents();
@@ -104,9 +104,6 @@ namespace WarriorQuest.Character.Enemy
             if (colliders.Length > 0)
             {
                 //LINQ를 사용하여 가장 가까운 플레이어 선택 (SQL)
-                //A, B Vector2.Distance(A,B)
-                //A, B (A-B).magnitude
-                //A, B (A-B).sqrMagnitude : 성능(속도)상 굳
                 target = colliders
                     .OrderBy(c => (c.transform.position - transform.position).sqrMagnitude)
                     .First()
@@ -140,12 +137,31 @@ namespace WarriorQuest.Character.Enemy
             //Target의 위치에 따라 스프라이트 Flip 처리
             spriteRenderer.flipX = direction.x < 0; //왼쪽을 바라봄.
             //rigidbody2D를 사용하여 이동 처리
-            rb.linearVelocity = direction * moveSpeed;
+            rb.linearVelocity = direction * enemySo.moveSpeed;
         }
         
+        //정지 메서드
         public void StopMoving()
         {
             rb.linearVelocity = Vector2.zero;
+        }
+        
+        //공격 쿨타임이 지났는지 확인하는 메서드
+        public bool CanAttack(float lastAttackTime)
+        {
+            if (Time.time >= lastAttackTime + enemySo.attackCooldown)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        //공격 사정거리 이내에 플레이어 존재 여부 확인 
+        public bool IsPlayerAttackRange()
+        {
+            float attackRange = Vector2.Distance(transform.position, target.position);
+            return (attackRange <= enemySo.attackDistance);
         }
 
         #endregion
@@ -160,12 +176,12 @@ namespace WarriorQuest.Character.Enemy
         
         private void InitBasicStats()
         {
-            maxHp = enemySo.maxHp;
-            curHp = maxHp;
-            moveSpeed = enemySo.moveSpeed;
-            chaseDistance = enemySo.chaseDistance;
-            attackDistance = enemySo.attackDistance;
-            attackCooldown = enemySo.attackCooldown;
+            //maxHp = enemySo.maxHp;
+            curHp = enemySo.maxHp;
+            // moveSpeed = enemySo.moveSpeed;
+            // chaseDistance = enemySo.chaseDistance;
+            // attackDistance = enemySo.attackDistance;
+            // attackCooldown = enemySo.attackCooldown;
         }
         #endregion
 

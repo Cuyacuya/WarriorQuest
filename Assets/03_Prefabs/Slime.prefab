@@ -192,10 +192,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e2d7f2b5cd95a4991af91db4d0890c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slime
-  maxHp: 0
   curHp: 0
-  moveSpeed: 0
-  chaseDistance: 0
-  attackDistance: 0
-  attackCooldown: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  target: {fileID: 0}
+  detectInterval: 0.3
   enemySo: {fileID: 11400000, guid: e1aaa720430ac714e986ba70c10b7620, type: 2}
+  dashSpeed: 10
+  returnSpeed: 8
+  dashDistance: 1
+  waitingTime: 0.2

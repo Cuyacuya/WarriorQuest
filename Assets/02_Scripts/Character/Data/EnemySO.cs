@@ -8,4 +8,5 @@ public class EnemySO : ScriptableObject
     public float chaseDistance = 5f;
     public float attackDistance = 2f;
     public float attackCooldown = 1f;
+    public float attackDamage = 10f;
 }
