@@ -667,7 +667,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -6074762140567998671, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -2315569526197371611, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 4.205707
+      m_AnimationSpeed: 4.9037695
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 11, y: -7, z: 0}
@@ -677,7 +677,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -6074762140567998671, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -2315569526197371611, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 4.3839493
+      m_AnimationSpeed: 2.9610982
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -7, y: 3, z: 0}
@@ -687,7 +687,7 @@ Tilemap:
       - {fileID: 1209215474, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -522669331, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -357073678, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 4.2346506
+      m_AnimationSpeed: 2.111209
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -4, y: 3, z: 0}
@@ -697,7 +697,7 @@ Tilemap:
       - {fileID: 1209215474, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -522669331, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -357073678, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 3.819078
+      m_AnimationSpeed: 4.94844
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -1, y: 3, z: 0}
@@ -707,7 +707,7 @@ Tilemap:
       - {fileID: 1209215474, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -522669331, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -357073678, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 2.6957288
+      m_AnimationSpeed: 3.8016062
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 9, y: 5, z: 0}
@@ -717,7 +717,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -6074762140567998671, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -2315569526197371611, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 2.9815712
+      m_AnimationSpeed: 3.8610492
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 11, y: 5, z: 0}
@@ -727,7 +727,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -6074762140567998671, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -2315569526197371611, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 4.9778204
+      m_AnimationSpeed: 3.1179981
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 6, y: 7, z: 0}
@@ -737,7 +737,7 @@ Tilemap:
       - {fileID: 4110507524353339581, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -6074762140567998671, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
       - {fileID: -2315569526197371611, guid: d05b4739b47e51646a1b838f8b8e9bfc, type: 3}
-      m_AnimationSpeed: 3.3656378
+      m_AnimationSpeed: 3.86087
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -2498,35 +2498,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1301855741 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1420663691344858660, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
-  m_PrefabInstance: {fileID: 5424383558660355717}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1301855747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301855741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a354a5fa8024be74896aaddc9039800e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WarriorQuest.Character.Enemy.Enemy
---- !u!114 &1301855748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301855741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42e2d7f2b5cd95a4991af91db4d0890c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Slime
 --- !u!1 &1555205765
 GameObject:
   m_ObjectHideFlags: 0
@@ -12769,13 +12740,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
-    - target: {fileID: 5240744146451095535, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
+    - target: {fileID: 3662646835327363709, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
+      propertyPath: playerMask.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6526081807957808730, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.4
+      value: 8.6
       objectReference: {fileID: 0}
     - target: {fileID: 6526081807957808730, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12816,13 +12787,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1420663691344858660, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1301855747}
-    - targetCorrespondingSourceObject: {fileID: 1420663691344858660, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1301855748}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ae67745e6f9071429f7cee9b4251ddd, type: 3}
 --- !u!1001 &8257836411676352063
 PrefabInstance:
@@ -12872,6 +12837,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4683374431929424380, guid: 18476c216f9a3a24abd3cc8e6425f775, type: 3}
+      propertyPath: warriorSo
+      value: 
+      objectReference: {fileID: 11400000, guid: f17d6fe741afa244cb30d3d421c5d1e6, type: 2}
     - target: {fileID: 8464517372339541501, guid: 18476c216f9a3a24abd3cc8e6425f775, type: 3}
       propertyPath: m_Name
       value: Warrior

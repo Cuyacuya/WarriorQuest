@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 5494298800492250798}
   - component: {fileID: 7406893518732216099}
   - component: {fileID: 4683374431929424380}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Warrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,4 +367,4 @@ MonoBehaviour:
   moveSpeed: 5
   attackDamage: 20
   attackCooldown: 0.5
-  warriorSO: {fileID: 11400000, guid: f17d6fe741afa244cb30d3d421c5d1e6, type: 2}
+  warriorSo: {fileID: 0}
