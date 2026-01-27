@@ -15,7 +15,6 @@ namespace WarriorQuest.Character.Enemy.FSM
         {
             if (enemy.PlayerDetectable())
             {
-                Debug.Log($"플레이어 검출 : {Time.time}");
                 if (enemy.DetectPlayer())
                 {
                     enemy.ChangeState<ChaseState>();

@@ -13,6 +13,11 @@ namespace WarriorQuest.Character.Enemy
         [SerializeField] private float returnSpeed = 8f;
         [SerializeField] private float dashDistance = 0.5f;
         [SerializeField] private float waitingTime = 0.2f;
+
+        [Header("넉백 설정")] 
+        [SerializeField] private float knockbackSpeed = 15f;
+        [SerializeField] private float knockbackDistance = 0.5f;
+        
         private Vector2 originPosition;
         public bool IsAttacking { get; private set; } = false;
         public float LastAttackTime { get; private set; }
@@ -52,9 +57,12 @@ namespace WarriorQuest.Character.Enemy
             //이동 시간 = 거리 / 속도
             float dashDuration = dashDistance / dashSpeed;
 
+            yield return new WaitForSeconds(waitingTime);
+
             //While : Dash
             while (dashTime < dashDuration)
             {
+                if(!IsAttacking) yield break;
                 transform.position = Vector2.MoveTowards(transform.position, dashTarget, dashSpeed * Time.deltaTime);
                 dashTime += Time.deltaTime;
                 yield return null;
@@ -90,6 +98,44 @@ namespace WarriorQuest.Character.Enemy
             }
         }
 
-        #endregion    
+        #endregion
+
+        #region 피격 처리
+
+        public override void TakeDamage(float damage)
+        {
+            //공격 코루틴 정지
+            if (IsAttacking)
+            {
+                IsAttacking = false;
+            }
+            
+            base.TakeDamage(damage);
+            
+            //넉백호출
+            StartCoroutine(Knockback());
+
+        }
+        
+        //넉백 처리 코루틴
+        private IEnumerator Knockback()
+        {
+            //넉백 방향 벡터 계산
+            Vector2 knockbackDir = (transform.position - target.position).normalized;
+            float knockbackTime = 0f;
+            
+            //넉백 시간 계산
+            float duration = knockbackDistance / knockbackSpeed;
+            while (knockbackTime < duration)
+            {
+                transform.Translate(knockbackDir * knockbackSpeed * Time.deltaTime);
+                knockbackTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        #endregion
     }
+    
+    
 }

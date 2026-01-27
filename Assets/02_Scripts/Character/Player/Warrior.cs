@@ -1,4 +1,5 @@
 using UnityEngine;
+using WarriorQuest.Character.Interface;
 
 namespace WarriorQuest.Character.Player
 {
@@ -6,6 +7,11 @@ namespace WarriorQuest.Character.Player
     {
         [Header("전사 고유 스탯")]
         [SerializeField] private WarriorSO warriorSo;
+        
+        [Header("적 검출 설정")]
+        [SerializeField] private Vector2 size = new Vector2(1f,2f);
+        [SerializeField] private float offset = 0.5f;
+        [SerializeField] private LayerMask enemyLayer;
 
         #region 유니티 라이프사이클
         protected override void Awake()
@@ -30,6 +36,18 @@ namespace WarriorQuest.Character.Player
         {
             //공격 판정 처리 예정
             Debug.Log("공격 애니메이션 이벤트 발생 - 공격 판정 처리");
+            
+            //공격 범위 계산
+            //방향
+            Vector2 dircetion = spriteRenderer.flipX ? Vector2.left : Vector2.right;
+            Vector2 center = (Vector2)transform.position + (dircetion * offset);
+
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(center, size, 0 ,enemyLayer);
+
+            foreach (var col in colliders)
+            {
+                col.GetComponent<IDamageable>()?.TakeDamage(warriorSo.attackDamage);
+            }
         }
 
         public override void TakeDamage(float damage)
@@ -41,6 +59,20 @@ namespace WarriorQuest.Character.Player
 
             Debug.Log($"Warrior가 {actualDamage}를 받았습니다. 현재 체력 : {curHp}/{maxHp}");
         }
-    }
 
+        #region Gizmos
+
+        private void OnDrawGizmos()
+        {
+            if(spriteRenderer == null)spriteRenderer = GetComponent<SpriteRenderer>();
+            
+            Vector2 dircetion = spriteRenderer.flipX ? Vector2.left : Vector2.right;
+            Vector2 center = (Vector2)transform.position + (dircetion * offset);
+            
+            Gizmos.color = new Color(1f, 0f, 0f, 0.3f);
+            Gizmos.DrawCube(center, new Vector3(size.x, size.y, 0f));
+        }
+
+        #endregion
+    }
 }

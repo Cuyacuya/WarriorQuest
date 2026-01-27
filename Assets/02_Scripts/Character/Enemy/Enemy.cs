@@ -1,21 +1,21 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using WarriorQuest.Character.Enemy.FSM;
+using WarriorQuest.Character.Interface;
 
 namespace WarriorQuest.Character.Enemy
 {
-    public abstract class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour, IDamageable
     {
         // [Header("기본 스텟 Data")]
-        // [SerializeField] protected float maxHp;
         [SerializeField] protected float curHp;
-        // [SerializeField] protected float moveSpeed;
-        // [SerializeField] protected float chaseDistance;
-        // [SerializeField] protected float attackDistance;
-        // [SerializeField] protected float attackCooldown;
+       
+        //사망 여부 프로퍼티
+        public bool IsDaed => curHp <= 0;
         
         //Player 레이어 마스크
         [Header("Player 레이어 마스크")]
@@ -211,5 +211,37 @@ namespace WarriorQuest.Character.Enemy
             Gizmos.DrawWireSphere(transform.position, enemySo.attackDistance);
         }
         #endregion
+
+        #region 피격 관련 메서드
+
+        public virtual void TakeDamage(float damage)
+        {
+            if (IsDaed) return;
+            
+            curHp -= damage;
+
+            if (curHp <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                //Hit 처리 애니메이션
+                anim.SetTrigger(hashHit);
+            }
+        }
+
+        protected void Die()
+        {
+            StartCoroutine(DestroyEnemy());
+        }
+
+        private IEnumerator DestroyEnemy()
+        {
+            yield return new WaitForSeconds(1.0f);
+            Destroy(gameObject);
+        }
+        #endregion
+        
     }
 }
