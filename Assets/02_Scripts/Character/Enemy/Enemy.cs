@@ -79,6 +79,9 @@ namespace WarriorQuest.Character.Enemy
 
         private void Update()
         {
+            //사망 여부 판단
+            if (IsDaed) return;
+            
             //상태 머신 업데이트
             stateMachine.Update();
         }

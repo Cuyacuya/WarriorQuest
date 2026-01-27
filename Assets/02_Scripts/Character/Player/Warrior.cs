@@ -1,5 +1,6 @@
 using UnityEngine;
 using WarriorQuest.Character.Interface;
+using  WarriorQuest.Audio;
 
 namespace WarriorQuest.Character.Player
 {
@@ -27,7 +28,8 @@ namespace WarriorQuest.Character.Player
         #endregion
         protected override void Attack()
         {
-            Debug.Log("공격!!!");
+            //공격 사운드 재샐
+            AudioManager.Instance.PlayerSFX(AudioManager.Instance.audioData.playerAttackSFX);
 
         }
 
@@ -52,6 +54,7 @@ namespace WarriorQuest.Character.Player
 
         public override void TakeDamage(float damage)
         {
+            AudioManager.Instance.StopPlayerSFX();
             //방어력 적용
             float actualDamage = Mathf.Max(damage- warriorSo.defense, 5f);
 

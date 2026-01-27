@@ -7,7 +7,6 @@ namespace WarriorQuest.Character.Enemy.FSM
     {
         public void OnEnter(Enemy enemy)
         {
-            Debug.Log("IdleState 진입");
             enemy.anim.SetBool(Enemy.hashIsMoving, false);
         }
 
@@ -24,7 +23,6 @@ namespace WarriorQuest.Character.Enemy.FSM
 
         public void OnExit(Enemy enemy)
         {
-            Debug.Log("IdleState 탈출");
         }
     }
 }

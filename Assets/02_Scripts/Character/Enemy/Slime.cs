@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WarriorQuest.Character.Enemy.FSM;
 using WarriorQuest.Character.Interface;
+using WarriorQuest.Audio;
 
 namespace WarriorQuest.Character.Enemy
 {
@@ -59,10 +60,17 @@ namespace WarriorQuest.Character.Enemy
 
             yield return new WaitForSeconds(waitingTime);
 
+            //공격 사운드 재생
+            AudioManager.Instance.EnemySFX(AudioManager.Instance.audioData.EnemyAttackSFX);
+            
             //While : Dash
             while (dashTime < dashDuration)
             {
-                if(!IsAttacking) yield break;
+                if (!IsAttacking)
+                {
+                    AudioManager.Instance.StopEnemySFX();
+                    yield break;
+                }
                 transform.position = Vector2.MoveTowards(transform.position, dashTarget, dashSpeed * Time.deltaTime);
                 dashTime += Time.deltaTime;
                 yield return null;
