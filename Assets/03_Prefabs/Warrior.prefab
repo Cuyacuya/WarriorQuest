@@ -368,3 +368,9 @@ MonoBehaviour:
   attackDamage: 20
   attackCooldown: 0.5
   warriorSo: {fileID: 11400000, guid: f17d6fe741afa244cb30d3d421c5d1e6, type: 2}
+  size: {x: 1, y: 2}
+  offset: 0.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  healthEventSO: {fileID: 11400000, guid: a7151eb0dd06a054394c0788dadac451, type: 2}
