@@ -14,7 +14,7 @@ namespace WarriorQuest.Character.Player
         [SerializeField] private float offset = 0.5f;
         [SerializeField] private LayerMask enemyLayer;
         
-        [Header("Events")] [SerializeField] HealthEventSO healthEventSO;
+        //[Header("Events")] [SerializeField] HealthEventSO healthEventSO;
 
         #region 유니티 라이프사이클
         protected override void Awake()
@@ -57,13 +57,14 @@ namespace WarriorQuest.Character.Player
         public override void TakeDamage(float damage)
         {
             AudioManager.Instance.StopPlayerSFX();
+            
             //방어력 적용
             float actualDamage = Mathf.Max(damage- warriorSo.defense, 5f);
 
             base.TakeDamage(actualDamage);
             
             //데미지 이벤트 발생 요청
-            healthEventSO.Raise(curHp, maxHp);
+            //healthEventSO.Raise(curHp, maxHp);
             //Debug.Log($"Warrior가 {actualDamage}를 받았습니다. 현재 체력 : {curHp}/{maxHp}");
         }
 

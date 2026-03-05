@@ -44,7 +44,7 @@ namespace WarriorQuest.Character.Enemy
 
         //애니메이션 해시 변수
         public static readonly int hashIsMoving = Animator.StringToHash("IsMoving");
-        protected static readonly int hashHit= Animator.StringToHash("Hiy");
+        protected static readonly int hashHit= Animator.StringToHash("Hit");
         
         //상태를 저장할 딕셔너리 변수
         protected Dictionary<Type, IState> states;
@@ -80,6 +80,8 @@ namespace WarriorQuest.Character.Enemy
         private void Update()
         {
             //사망 여부 판단
+            
+            //FSM DeadState
             if (IsDaed) return;
             
             //상태 머신 업데이트
