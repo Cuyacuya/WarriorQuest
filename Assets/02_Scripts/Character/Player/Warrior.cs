@@ -1,3 +1,4 @@
+using _02_Scripts.Event;
 using UnityEngine;
 using WarriorQuest.Character.Interface;
 using  WarriorQuest.Audio;
@@ -13,6 +14,9 @@ namespace WarriorQuest.Character.Player
         [SerializeField] private Vector2 size = new Vector2(1f,2f);
         [SerializeField] private float offset = 0.5f;
         [SerializeField] private LayerMask enemyLayer;
+        
+        [Header("Events")]
+        [SerializeField] private HealthEventSO healthEventSO; 
         
         //[Header("Events")] [SerializeField] HealthEventSO healthEventSO;
 
@@ -64,7 +68,7 @@ namespace WarriorQuest.Character.Player
             base.TakeDamage(actualDamage);
             
             //데미지 이벤트 발생 요청
-            //healthEventSO.Raise(curHp, maxHp);
+            healthEventSO.Raise(curHp, maxHp);
             //Debug.Log($"Warrior가 {actualDamage}를 받았습니다. 현재 체력 : {curHp}/{maxHp}");
         }
 

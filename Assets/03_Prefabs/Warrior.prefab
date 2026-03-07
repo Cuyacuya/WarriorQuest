@@ -372,5 +372,5 @@ MonoBehaviour:
   offset: 0.5
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
-  healthEventSO: {fileID: 11400000, guid: a7151eb0dd06a054394c0788dadac451, type: 2}
+    m_Bits: 64
+  healthEventSO: {fileID: 11400000, guid: 311e889c475a1704ead55896ed5bdd2d, type: 2}
