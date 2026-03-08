@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a517cf790b0491f87b5064a3c549c06, type: 3}
+  m_Name: IronSword
+  m_EditorClassIdentifier: Assembly-CSharp::WarriorQuest.InventorySystem.Item.EquipmentItemData
+  itemID: 1002
+  itemName: Iron Sword
+  itemType: 0
+  itemIcon: {fileID: 2000596568497729027, guid: 8903792761660114c9016e30931a51b8, type: 3}
+  isEquip: 0
+  description: Iron Sword
+  equipType: 0
+  attackDamage: 10
+  defence: 0
+  attackCoolDown: 0.8

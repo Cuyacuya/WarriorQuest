@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d8490362944d8197f4e9cb752058ae, type: 3}
+  m_Name: HpPortionLarge
+  m_EditorClassIdentifier: Assembly-CSharp::WarriorQuest.InventorySystem.Item.ConsumableItemData
+  itemID: 2001
+  itemName: Hp Portion
+  itemType: 1
+  itemIcon: {fileID: -6871600384058977472, guid: 2c3a8176bfa7e4c4abf44e22fc30d230, type: 3}
+  isEquip: 0
+  description: HP Portion (Large)
+  hpRecovery: 100
+  mpRecovery: 0
