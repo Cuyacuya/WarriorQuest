@@ -15,9 +15,6 @@ namespace WarriorQuest.Character.Player
         [SerializeField] private float offset = 0.5f;
         [SerializeField] private LayerMask enemyLayer;
         
-        [Header("Events")]
-        [SerializeField] private HealthEventSO healthEventSO; 
-        
         //[Header("Events")] [SerializeField] HealthEventSO healthEventSO;
 
         #region 유니티 라이프사이클

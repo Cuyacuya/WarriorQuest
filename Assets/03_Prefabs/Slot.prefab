@@ -358,7 +358,7 @@ MonoBehaviour:
   isDefaultSelected: 0
   item: {fileID: 3640865817970608658}
   selectedMarkImage: {fileID: 4249847286229419937}
-  ItemImage: {fileID: 2907400289250099759}
+  itemImage: {fileID: 2907400289250099759}
   equipText: {fileID: 1483179302246303764}
 --- !u!1 &8094770894591389277
 GameObject:

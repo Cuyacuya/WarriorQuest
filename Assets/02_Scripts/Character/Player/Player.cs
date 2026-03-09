@@ -1,3 +1,4 @@
+using _02_Scripts.Event;
 using UnityEngine;
 using WarriorQuest.Character.Interface;
 using WarriorQuest.InputSystem;
@@ -17,6 +18,9 @@ namespace WarriorQuest.Character.Player
         [SerializeField] protected float moveSpeed = 5f;
         [SerializeField] protected float attackDamage = 20f;
         [SerializeField] protected float attackCooldown = 0.5f;
+        
+        [Header("Events")]
+        [SerializeField] protected HealthEventSO healthEventSO;
 
         protected bool isDead => curHp <= 0;
         #endregion
@@ -110,6 +114,15 @@ namespace WarriorQuest.Character.Player
         {
             curHp = 0;
             Debug.Log("플레이어가 죽었습니다.");
+        }
+
+        public void Heal(float amount)
+        {
+            if(isDead) return;
+            curHp += amount;
+            curHp = Mathf.Min(curHp, maxHp);
+            
+            healthEventSO.Raise(curHp, maxHp);
         }
         #endregion
 
