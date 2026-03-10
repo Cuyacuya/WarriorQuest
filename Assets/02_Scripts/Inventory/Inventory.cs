@@ -81,6 +81,14 @@ namespace WarriorQuest.InventorySystem
                     UseItem(selectedSlotIndex);
                 }
             }
+
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                if (selectedSlotIndex != -1 && items[selectedSlotIndex] != null)
+                {
+                    EquipItem((selectedSlotIndex));
+                }
+            }
         }
 
         #endregion
@@ -156,6 +164,18 @@ namespace WarriorQuest.InventorySystem
             UseConsumableItem(item as ConsumableItemData);
         }
         
+        //장착 아이템
+        public void EquipItem(int index)
+        {
+            var item = items[index];
+            if (item.itemType != ItemType.Equipment)
+            {
+                Debug.Log("장착할 수 없는 아이템 입니다.");
+                return;
+            }
+            EquipSelectedItem(item as EquipmentItemData);
+        }
+        
         //빈 슬롯 인덱스 찾기
         private int FindEmptySlot()
         {
@@ -177,6 +197,25 @@ namespace WarriorQuest.InventorySystem
             RemoveItem(selectedSlotIndex);
         }
 
+        private void EquipSelectedItem(EquipmentItemData item)
+        {
+            //기존 장착된 아이템 장착 해제
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] is EquipmentItemData equippedItem && equippedItem.isEquip)
+                {
+                    //이전 장착 해제
+                    equippedItem.isEquip = false;
+                    slots[i].ItemData = items[i];
+                    break;
+                }
+            }
+            
+            //장비 장착
+            player.EquipWeapon(item);
+            item.isEquip = true;
+            slots[selectedSlotIndex].ItemData = item;
+        }
         #endregion
     }
 }

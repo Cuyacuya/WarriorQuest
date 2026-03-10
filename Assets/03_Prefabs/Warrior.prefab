@@ -367,10 +367,12 @@ MonoBehaviour:
   moveSpeed: 5
   attackDamage: 20
   attackCooldown: 0.5
+  defense: 0
+  healthEventSO: {fileID: 11400000, guid: 311e889c475a1704ead55896ed5bdd2d, type: 2}
+  weaponSprite: {fileID: 3992696782592068297}
   warriorSo: {fileID: 11400000, guid: f17d6fe741afa244cb30d3d421c5d1e6, type: 2}
   size: {x: 1, y: 2}
   offset: 0.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  healthEventSO: {fileID: 11400000, guid: 311e889c475a1704ead55896ed5bdd2d, type: 2}

@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Iron Sword
   itemType: 0
   itemIcon: {fileID: 2000596568497729027, guid: 8903792761660114c9016e30931a51b8, type: 3}
-  isEquip: 0
+  isEquip: 1
   description: Iron Sword
   equipType: 0
   attackDamage: 10

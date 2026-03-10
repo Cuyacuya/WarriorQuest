@@ -2,6 +2,7 @@ using _02_Scripts.Event;
 using UnityEngine;
 using WarriorQuest.Character.Interface;
 using WarriorQuest.InputSystem;
+using WarriorQuest.InventorySystem.Item;
 
 namespace WarriorQuest.Character.Player
 {
@@ -18,9 +19,19 @@ namespace WarriorQuest.Character.Player
         [SerializeField] protected float moveSpeed = 5f;
         [SerializeField] protected float attackDamage = 20f;
         [SerializeField] protected float attackCooldown = 0.5f;
+        [SerializeField] protected float defense = 10f;
+        
         
         [Header("Events")]
         [SerializeField] protected HealthEventSO healthEventSO;
+
+        [Header("Weapon Sprite")] 
+        [SerializeField] protected SpriteRenderer weaponSprite;
+        
+        //기본 스텟 백업
+        private float baseAttackDamage;
+        private float baseDefense;
+        private EquipmentItemData curWeapon;
 
         protected bool isDead => curHp <= 0;
         #endregion
@@ -56,6 +67,11 @@ namespace WarriorQuest.Character.Player
         {
             //초기 체력 설정
             curHp = maxHp;
+            
+            //기본 스텟 설정
+            baseAttackDamage = attackDamage;
+            baseDefense = defense;
+            
             //컴포넌트 캐싱
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
@@ -125,6 +141,22 @@ namespace WarriorQuest.Character.Player
             healthEventSO.Raise(curHp, maxHp);
         }
         #endregion
+        
+        //무기 교체 메서드
+        public void EquipWeapon(EquipmentItemData newWeapon)
+        {
+            //무기 스프라이트 교체
+            weaponSprite.sprite = newWeapon.itemIcon;
+            
+            //기본 + 무기 스텟 합산
+            attackDamage = baseAttackDamage + newWeapon.attackDamage;
+            attackCooldown = newWeapon.attackCoolDown;
+            defense = newWeapon.defence;
+
+            curWeapon = newWeapon;
+            Debug.Log($"새 무기 장착 : {newWeapon.itemName}");
+        }
+        //무기 해제 메서드
 
         #region 입력 처리 메서드
         private void OnMove(Vector2 ctx)
