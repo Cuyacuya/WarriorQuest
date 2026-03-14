@@ -31,6 +31,13 @@ namespace WarriorQuest.InventorySystem
         private ItemData[] items;
         //선택 슬롯 인덱스
         private int selectedSlotIndex = -1;
+        
+        //인벤토리용 InputAction
+        private InputSystem_Actions inputActions;
+        private InputAction openInventoryAction;
+        private InputAction useItemAction;
+        private InputAction equipItemAction;
+        
 
         #region 유니티 생명주기
 
@@ -48,6 +55,17 @@ namespace WarriorQuest.InventorySystem
             //첫 번째 슬롯을 기본 선택
             slots[0].isDefaultSelected = true;
             selectedSlotIndex = 0;
+            
+            //인벤토리 UI 비활성화
+            canvasGroup.alpha = 0;
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
+            
+            //inputAction 설정
+            inputActions = new InputSystem_Actions();
+            openInventoryAction = inputActions.Inventory.Open;
+            useItemAction = inputActions.Inventory.UseItem;
+            equipItemAction = inputActions.Inventory.EquipItem;
         }
 
         private IEnumerator Start()
@@ -60,45 +78,36 @@ namespace WarriorQuest.InventorySystem
         private void OnEnable()
         {
             Slot.OnSlotSelected += SlotSelected;
+
+            openInventoryAction.performed += ToggleInventory;
+            useItemAction.performed += UseItemCallBack; 
+            equipItemAction.performed += EquipItemCallback;
+            inputActions.Enable();
         }
         private void OnDisable()
         {
             Slot.OnSlotSelected -= SlotSelected;
+            
+            openInventoryAction.performed -= ToggleInventory;
+            useItemAction.performed -= UseItemCallBack;
+            equipItemAction.performed -= EquipItemCallback;
+            inputActions.Disable();
         }
 
         private void OnGUI() //버튼 만들기 (래거시 GUI)
         {
             if (GUILayout.Button("아이템 초기 지급"))
             {
-                ItemData hpPortion = Resources.Load<ItemData>("ItemData/HpPortionLarge");
-                AddItem(hpPortion);
+                //ItemData hpPortion = Resources.Load<ItemData>("ItemData/HpPortionLarge");
+                //AddItem(hpPortion);
                 
                 //기본 장착 무기
-                ItemData sword = Resources.Load<ItemData>("ItemData/RustySword");
+                ItemData sword = Resources.Load<ItemData>("ItemData/IronSword");
                 AddItem(sword);
-                sword = Resources.Load<ItemData>("ItemData/IronSword");
-                AddItem(sword);
-                sword = Resources.Load<ItemData>("ItemData/LegendSword");
-                AddItem(sword);
-            }
-        }
-
-        private void Update()
-        {
-            if (Keyboard.current.uKey.wasPressedThisFrame)
-            {
-                if (selectedSlotIndex != -1 && items[selectedSlotIndex] != null)
-                {
-                    UseItem(selectedSlotIndex);
-                }
-            }
-
-            if (Keyboard.current.eKey.wasPressedThisFrame)
-            {
-                if (selectedSlotIndex != -1 && items[selectedSlotIndex] != null)
-                {
-                    EquipItem((selectedSlotIndex));
-                }
+                // sword = Resources.Load<ItemData>("ItemData/IronSword");
+                // AddItem(sword);
+                // sword = Resources.Load<ItemData>("ItemData/LegendSword");
+                // AddItem(sword);
             }
         }
 
@@ -106,6 +115,43 @@ namespace WarriorQuest.InventorySystem
         
 
         #region 슬롯 처리 메서드
+        
+        //인벤토리 Open/Close
+        private void ToggleInventory(InputAction.CallbackContext context)
+        {
+            if (canvasGroup.interactable)
+            {
+                //인벤토리 닫기
+                canvasGroup.interactable = false;
+                canvasGroup.blocksRaycasts = false;
+                canvasGroup.alpha = 0;
+            }
+            else //인벤토리 오픈
+            {
+                canvasGroup.interactable = true;
+                canvasGroup.blocksRaycasts = true;
+                canvasGroup.alpha = 1;
+                
+                //선택된 아이템 정보 업데이트
+                UpdateSelectedItemInfo();
+            }
+        }
+
+        private void UseItemCallBack(InputAction.CallbackContext context)
+        {
+            if (selectedSlotIndex != -1 && items[selectedSlotIndex] != null)
+            {
+                UseItem(selectedSlotIndex);
+            }
+        }
+
+        private void EquipItemCallback(InputAction.CallbackContext context)
+        {
+            if (selectedSlotIndex != -1 && items[selectedSlotIndex] != null)
+            {
+                EquipItem((selectedSlotIndex));
+            }
+        }
         
         private void SlotSelected(Slot slot)
         {

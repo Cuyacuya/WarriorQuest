@@ -5,6 +5,7 @@ using UnityEngine;
 using WarriorQuest.Character.Interface;
 using  WarriorQuest.Audio;
 using WarriorQuest.InventorySystem;
+using WarriorQuest.InventorySystem.Item;
 
 namespace WarriorQuest.Character.Player
 {
@@ -59,6 +60,8 @@ namespace WarriorQuest.Character.Player
 
                 if (success)
                 {
+                    //기본 무기 장착
+                    EquipWeapon(defaultWeapon as EquipmentItemData);
                     Debug.Log("기본 무기 장착됨.");
                 }
             }
