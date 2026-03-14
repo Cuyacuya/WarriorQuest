@@ -17,4 +17,9 @@ public class ItemData : ScriptableObject
     
     [TextArea]
     public string description;
+
+    public virtual string GetInfo()
+    {
+        return "";
+    }
 }

@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Mono.Cecil;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using WarriorQuest.Character.Player;
 using WarriorQuest.InventorySystem.Item;
 
@@ -11,7 +13,16 @@ namespace WarriorQuest.InventorySystem
 {
     public class Inventory : MonoBehaviour
     {
+        [Header("선택 아이템 UI")] 
+        [SerializeField] private Image itemImage;
+
+        [SerializeField] private TextMeshProUGUI itemNameText;
+        [SerializeField] private TextMeshProUGUI itemDescriptionText;
+        [SerializeField] private TextMeshProUGUI itemInfoText;
+            
         [SerializeField] private List<Slot> slots;
+        
+        public CanvasGroup canvasGroup; 
         
         //Player 컴포넌트 참조
         private Player player;
@@ -104,6 +115,8 @@ namespace WarriorQuest.InventorySystem
             slot.selectedMarkImage.enabled = true;
             selectedSlotIndex = slot.slotIndex;
 
+            //선택한 아이템 정보 표시
+            UpdateSelectedItemInfo();
             Debug.Log($"선택된 슬롯 : {slot.name}");
         }
 
@@ -119,11 +132,26 @@ namespace WarriorQuest.InventorySystem
             }
         }
         
+        //선택한 아이템 정보 표시
+        private void UpdateSelectedItemInfo()
+        {
+            if (selectedSlotIndex == -1) return;
+            
+            var item = items[selectedSlotIndex];
+            if (item != null)
+            {
+                itemImage.sprite = item.itemIcon;
+                itemNameText.text = item.itemName;
+                itemDescriptionText.text = item.description;
+                itemInfoText.text = item.GetInfo();
+            }
+        }
+        
         #endregion
 
         #region 아이템 처리 메서드
 
-        private bool AddItem(ItemData item)
+        public bool AddItem(ItemData item)
         {
           //빈 슬롯 찾기
           int emptyIndex = FindEmptySlot();

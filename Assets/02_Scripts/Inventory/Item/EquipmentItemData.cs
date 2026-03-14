@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 public enum EquipType
@@ -20,5 +21,14 @@ namespace WarriorQuest.InventorySystem.Item
         public float defence;
         //공격 속도
         public float attackCoolDown;
+        
+        public override string GetInfo()
+        { 
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"ATK : {attackDamage}\n");
+            sb.Append($"DEF : {defence}\n");
+            sb.Append($"SPD : {attackCoolDown}\n");
+            return sb.ToString();
+        }
     }
 }

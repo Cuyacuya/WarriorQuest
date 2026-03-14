@@ -90,7 +90,7 @@ namespace WarriorQuest.InventorySystem
                 {
                     itemImage.sprite = value.itemIcon;
                     item?.SetActive(true);
-                    equipText.text = value.isEquip ? "E" : "";
+                    equipText.text = value.isEquip ? "<color=#ff0000>E</color>" : "";
                 }
             }
         }

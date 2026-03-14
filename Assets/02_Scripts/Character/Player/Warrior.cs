@@ -1,7 +1,10 @@
+using System;
+using System.Collections;
 using _02_Scripts.Event;
 using UnityEngine;
 using WarriorQuest.Character.Interface;
 using  WarriorQuest.Audio;
+using WarriorQuest.InventorySystem;
 
 namespace WarriorQuest.Character.Player
 {
@@ -24,11 +27,65 @@ namespace WarriorQuest.Character.Player
             moveSpeed = warriorSo.moveSpeed;
             attackDamage = warriorSo.attackDamage;
             attackCooldown = warriorSo.attackCooldown;
+            defense = warriorSo.defense;
 
             Debug.Log($"전사 클래스가 생성되었습니다. 방어력 : {warriorSo.defense}");
             base.Awake();
         }
+
+        private IEnumerator Start()
+        {
+            yield return null;
+            //인벤토리 start call - 초기화
+            yield return null;
+            
+            var inventory = FindFirstObjectByType<Inventory>();
+            SetInitializeItems(inventory);
+        }
+
         #endregion
+
+        #region 초기 아이템 지급
+
+        private void SetInitializeItems(Inventory inventory)
+        {
+            //기본 무기 (Rusty Sword) - 자동 장착
+            ItemData defaultWeapon = Resources.Load<ItemData>("ItemData/RustySword");
+
+            if (defaultWeapon != null)
+            {
+                defaultWeapon.isEquip = true;
+                var success = inventory.AddItem(defaultWeapon);
+
+                if (success)
+                {
+                    Debug.Log("기본 무기 장착됨.");
+                }
+            }
+            else
+            {
+                Debug.Log("기본 장착 무기 데이터가 없습니다.");
+            }
+
+            //회복 포션
+            ItemData hpPortion = Resources.Load<ItemData>("ItemData/HpPortionLarge");
+
+            if (hpPortion != null)
+            {
+                inventory.AddItem(hpPortion);
+                inventory.AddItem(hpPortion);
+                Debug.Log("회복 포션 2개가 지급 되었습니다.");
+            }
+            else
+            {
+                Debug.Log("회복 포션 데이터가 없습니다.");
+
+            }
+        }
+
+        #endregion
+
+        #region 공격 및 데미지 처리
         protected override void Attack()
         {
             //공격 사운드 재샐
@@ -68,6 +125,8 @@ namespace WarriorQuest.Character.Player
             healthEventSO.Raise(curHp, maxHp);
             //Debug.Log($"Warrior가 {actualDamage}를 받았습니다. 현재 체력 : {curHp}/{maxHp}");
         }
+        #endregion
+        
 
         #region Gizmos
 
